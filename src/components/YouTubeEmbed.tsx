@@ -31,31 +31,40 @@ export default function YouTubeEmbed({ url, title }: YouTubeEmbedProps) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="block p-4 rounded-xl bg-cosmos-800 border border-cosmos-600 hover:border-nebula-purple transition-colors"
+        className="group block p-4 rounded-xl glass-card"
       >
-        <span className="text-nebula-purple">Watch: {title} →</span>
+        <span className="text-nebula-purple group-hover:underline">
+          Watch: {title} →
+        </span>
       </a>
     );
   }
 
   if (isPlaylist) {
-    const listId = url.match(/list=([a-zA-Z0-9_-]+)/)?.[1];
     return (
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="group block rounded-xl overflow-hidden bg-cosmos-800 border border-cosmos-600 hover:border-nebula-purple transition-all duration-300"
+        className="group block rounded-xl overflow-hidden"
       >
-        <div className="relative aspect-video bg-cosmos-900 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-nebula-purple/20 flex items-center justify-center group-hover:bg-nebula-purple/30 transition-colors">
-              <svg className="w-8 h-8 text-nebula-purple" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
+        <div className="relative aspect-video bg-cosmos-900 flex items-center justify-center border border-cosmos-700/30 rounded-xl">
+          <div className="text-center px-6">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-nebula-purple/10 border border-nebula-purple/20 flex items-center justify-center group-hover:bg-nebula-purple/20 group-hover:scale-105 transition-all">
+              <svg
+                className="w-7 h-7 text-nebula-purple"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z" />
               </svg>
             </div>
-            <p className="text-star-white font-medium">{title}</p>
-            <p className="text-star-muted text-sm mt-1">Open Playlist →</p>
+            <p className="text-star-white font-display font-medium text-sm">
+              {title}
+            </p>
+            <p className="text-star-muted text-xs mt-1.5 group-hover:text-nebula-purple transition-colors">
+              Open Playlist →
+            </p>
           </div>
         </div>
       </a>
@@ -68,7 +77,7 @@ export default function YouTubeEmbed({ url, title }: YouTubeEmbedProps) {
     return (
       <button
         onClick={() => setLoaded(true)}
-        className="group relative block w-full rounded-xl overflow-hidden bg-cosmos-800 border border-cosmos-600 hover:border-nebula-purple transition-all duration-300 cursor-pointer"
+        className="group relative block w-full rounded-xl overflow-hidden cursor-pointer"
         aria-label={`Play ${title}`}
       >
         <div className="aspect-video relative">
@@ -78,10 +87,14 @@ export default function YouTubeEmbed({ url, title }: YouTubeEmbedProps) {
             className="w-full h-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-red-600/30">
-              <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <div className="w-16 h-16 rounded-2xl bg-red-600/90 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xl shadow-red-600/30">
+              <svg
+                className="w-7 h-7 text-white ml-0.5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>
@@ -92,7 +105,7 @@ export default function YouTubeEmbed({ url, title }: YouTubeEmbedProps) {
   }
 
   return (
-    <div className="rounded-xl overflow-hidden border border-cosmos-600">
+    <div className="rounded-xl overflow-hidden">
       <div className="aspect-video">
         <iframe
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0${timestamp}`}

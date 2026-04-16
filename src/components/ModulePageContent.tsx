@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { modules, Module } from "@/data/modules";
+import { Module } from "@/data/modules";
 import Sidebar from "@/components/Sidebar";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import ResourceCard from "@/components/ResourceCard";
-import SectionHeader from "@/components/SectionHeader";
 import Checklist from "@/components/Checklist";
 import ModuleNav from "@/components/ModuleNav";
 
@@ -15,96 +13,116 @@ export default function ModulePageContent({ mod }: { mod: Module }) {
   return (
     <>
       <Sidebar />
-      <main className="lg:pl-72 min-h-screen">
-        <div className="max-w-4xl mx-auto px-6 py-12 pt-16 lg:pt-12">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-10"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <span
-                className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-sm font-bold"
+      <main className="lg:pl-[280px] min-h-screen">
+        {/* Module header banner */}
+        <div
+          className="relative overflow-hidden border-b border-cosmos-700/30"
+          style={{
+            background: `linear-gradient(135deg, ${mod.color}08 0%, transparent 50%, ${mod.color}04 100%)`,
+          }}
+        >
+          <div className="max-w-4xl mx-auto px-6 pt-16 pb-10 lg:pt-12 relative z-10">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center text-sm font-bold"
                 style={{
                   backgroundColor: `${mod.color}20`,
                   color: mod.color,
-                  border: `1px solid ${mod.color}40`,
+                  border: `1px solid ${mod.color}35`,
+                  boxShadow: `0 0 20px ${mod.color}15`,
                 }}
               >
                 {mod.id}
-              </span>
-              <span className="text-sm text-star-muted">
-                Module {mod.id} &middot; {mod.timeEstimate}
-              </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-star-muted bg-cosmos-800/60 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                  Module {mod.id}
+                </span>
+                <span className="text-xs text-star-muted bg-cosmos-800/60 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                  ⏱ {mod.timeEstimate}
+                </span>
+              </div>
             </div>
             <h1 className="font-display font-bold text-4xl sm:text-5xl text-star-white mb-2">
               {mod.title}
             </h1>
-            <p className="text-xl text-star-dim">{mod.subtitle}</p>
-          </motion.div>
+            <p className="text-xl text-star-dim font-light">{mod.subtitle}</p>
+          </div>
 
+          {/* Decorative gradient line at bottom */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-px"
+            style={{
+              background: `linear-gradient(90deg, transparent, ${mod.color}40, transparent)`,
+            }}
+          />
+        </div>
+
+        <div className="max-w-4xl mx-auto px-6 py-10">
           {/* Intro */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-12"
-          >
-            <div className="space-y-4">
+          <div className="mb-14">
+            <div className="space-y-4 text-[15px] leading-[1.8]">
               {mod.intro.map((paragraph, i) => (
-                <p key={i} className="text-star-dim leading-relaxed">
+                <p key={i} className="text-star-dim">
                   {paragraph}
                 </p>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Videos */}
           {mod.videos.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mb-12"
-            >
-              <SectionHeader
-                icon="🎬"
-                title="Watch"
-                subtitle="Video resources to build your understanding"
-              />
-              <div className="space-y-6">
+            <section className="mb-14">
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-cosmos-700/30">
+                <span className="text-xl w-9 h-9 rounded-lg bg-cosmos-800/80 flex items-center justify-center">
+                  🎬
+                </span>
+                <div>
+                  <h2 className="font-display font-semibold text-lg text-star-white">
+                    Watch
+                  </h2>
+                  <p className="text-xs text-star-muted mt-0.5">
+                    Video resources to build your understanding
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-8">
                 {mod.videos.map((video) => (
-                  <div key={video.url}>
+                  <div
+                    key={video.url}
+                    className="glass-card rounded-2xl overflow-hidden"
+                  >
                     <YouTubeEmbed url={video.url} title={video.title} />
-                    <div className="mt-3">
-                      <h4 className="font-display font-semibold text-star-white text-sm">
+                    <div className="p-5">
+                      <h4 className="font-display font-semibold text-star-white text-[15px] mb-1">
                         {video.title}
                       </h4>
-                      <p className="text-xs text-star-muted mt-1">
+                      <p className="text-xs text-star-muted leading-relaxed">
                         {video.description}
                       </p>
                     </div>
                   </div>
                 ))}
               </div>
-            </motion.section>
+            </section>
           )}
 
           {/* Interactive Tools & Readings */}
           {allResources.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mb-12"
-            >
-              <SectionHeader
-                icon="🔗"
-                title="Explore"
-                subtitle="Interactive tools, articles, and papers"
-              />
+            <section className="mb-14">
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-cosmos-700/30">
+                <span className="text-xl w-9 h-9 rounded-lg bg-cosmos-800/80 flex items-center justify-center">
+                  🔗
+                </span>
+                <div>
+                  <h2 className="font-display font-semibold text-lg text-star-white">
+                    Explore
+                  </h2>
+                  <p className="text-xs text-star-muted mt-0.5">
+                    Interactive tools, articles, and papers
+                  </p>
+                </div>
+              </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 {allResources.map((resource) => (
                   <ResourceCard
@@ -117,27 +135,16 @@ export default function ModulePageContent({ mod }: { mod: Module }) {
                   />
                 ))}
               </div>
-            </motion.section>
+            </section>
           )}
 
           {/* Checklist */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mb-12"
-          >
+          <section className="mb-14">
             <Checklist moduleSlug={mod.slug} items={mod.checklist} />
-          </motion.section>
+          </section>
 
           {/* Navigation */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            <ModuleNav currentSlug={mod.slug} />
-          </motion.div>
+          <ModuleNav currentSlug={mod.slug} />
         </div>
       </main>
     </>
