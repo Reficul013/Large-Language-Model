@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --color-cosmos-950: #050510;
+  --color-cosmos-900: #0a0a1a;
+  --color-cosmos-800: #111128;
+  --color-cosmos-700: #1a1a3e;
+  --color-cosmos-600: #2a2a5e;
+  --color-cosmos-500: #3d3d7e;
+  --color-cosmos-400: #6366f1;
+  --color-cosmos-300: #818cf8;
+  --color-cosmos-200: #a5b4fc;
+  --color-cosmos-100: #c7d2fe;
+  --color-cosmos-50: #eef2ff;
+  --color-nebula-purple: #8B5CF6;
+  --color-nebula-blue: #06B6D4;
+  --color-nebula-pink: #EC4899;
+  --color-nebula-green: #10B981;
+  --color-nebula-amber: #F59E0B;
+  --color-nebula-red: #EF4444;
+  --color-star-white: #F8FAFC;
+  --color-star-dim: #94A3B8;
+  --color-star-muted: #64748B;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-cosmos-600) transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cosmos-950);
+  color: var(--color-star-white);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Star field background */
+.star-field {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 15% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(2px 2px at 25% 40%, rgba(139,92,246,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 65% 15%, rgba(6,182,212,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 80% 45%, rgba(236,72,153,0.2) 0%, transparent 100%);
+  background-color: var(--color-cosmos-950);
+}
+
+/* Glow effects */
+.glow-purple { text-shadow: 0 0 40px rgba(139, 92, 246, 0.5); }
+.glow-blue { text-shadow: 0 0 40px rgba(6, 182, 212, 0.5); }
+.glow-pink { text-shadow: 0 0 40px rgba(236, 72, 153, 0.5); }
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-cosmos-600);
+  border-radius: 3px;
+}
+
+/* Lite YouTube embed styles */
+lite-youtube {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Checklist styles */
+.checklist-item input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-cosmos-500);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.checklist-item input[type="checkbox"]:checked {
+  background: var(--color-nebula-purple);
+  border-color: var(--color-nebula-purple);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
 }
