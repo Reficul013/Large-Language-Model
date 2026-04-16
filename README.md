@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LLM Universe
 
-## Getting Started
+A free, open-source interactive learning hub for understanding Large Language Models from the ground up.
 
-First, run the development server:
+**[Live Site](https://large-language-model-drab.vercel.app/)**
+
+## What is this?
+
+LLM Universe is a curated, structured learning path that takes you from "what is an LLM?" to deeply understanding how they work. Instead of scattered resources across the internet, everything is organized into 8 modules with embedded videos, interactive tools, and reading materials.
+
+## Modules
+
+| # | Module | What You'll Learn |
+|---|--------|-------------------|
+| 0 | **The Big Picture** | What LLMs are, the training pipeline, why transformers matter |
+| 1 | **The Math You Need** | Vectors, matrices, dot products, softmax, gradient descent |
+| 2 | **Neural Networks** | Backpropagation, layers, weights, loss functions |
+| 3 | **Tokenization** | BPE, how text becomes numbers, tokenizer differences |
+| 4 | **The Transformer** | Self-attention, Q/K/V, multi-head attention, full architecture |
+| 5 | **Training LLMs** | Pretraining data, next token prediction, GPT-2 reproduction |
+| 6 | **Post-Training** | SFT, RLHF, DPO, alignment, hallucinations |
+| 7 | **Using LLMs** | Prompt engineering, model selection, RAG, agents, local LLMs |
+
+## Features
+
+- Dark cosmic theme with animated star field background
+- Sidebar navigation with per-module progress tracking
+- localStorage-based checklist persistence
+- Lazy-loaded YouTube embeds
+- Curated interactive tools (Transformer Explainer, TensorFlow Playground, Tiktokenizer, etc.)
+- Mobile responsive
+- Static export deployed on Vercel
+
+## Tech Stack
+
+- Next.js 16 (App Router, static export)
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+
+## Run Locally
 
 ```bash
+git clone https://github.com/Reficul013/Large-Language-Model.git
+cd Large-Language-Model
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Credits
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project curates content from incredible educators and builders:
 
-## Learn More
+- **Andrej Karpathy** — Deep dive videos on LLMs, tokenizers, GPT-2 reproduction
+- **3Blue1Brown** — Visual explanations of neural networks, transformers, and attention
+- **Jay Alammar** — Illustrated Transformer and GPT-2 guides
+- **Georgia Tech / Polo Club** — Transformer Explainer, CNN Explainer, GAN Lab
+- **Brendan Bycroft** — LLM Visualization at bbycroft.net
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Found a broken link? Know a resource that should be included? Open an issue or submit a PR.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open source.
